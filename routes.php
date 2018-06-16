@@ -20,7 +20,10 @@
   $controllers = array('pages' => ['home', 'error'],
                        'posts' => ['index', 'show']);
 
-  if (array_key_exists($controller, $controllers)) {
+/** @var string $controller */
+if (array_key_exists($controller, $controllers)) {
+
+    /** @var string $action */
     if (in_array($action, $controllers[$controller])) {
       call($controller, $action);
     } else {
