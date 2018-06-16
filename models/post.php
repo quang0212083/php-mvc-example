@@ -1,17 +1,30 @@
 <?php
-  class Post {
+
+/**
+ * Class Post
+ */
+class Post {
     // we define 3 attributes
     // they are public so that we can access them using $post->author directly
     public $id;
     public $author;
     public $content;
 
+    /**
+     * Post constructor.
+     * @param $id
+     * @param $author
+     * @param $content
+    */
     public function __construct($id, $author, $content) {
       $this->id      = $id;
       $this->author  = $author;
       $this->content = $content;
     }
 
+    /**
+     * @return array
+     */
     public static function all() {
       $list = [];
       $db = Db::getInstance();
@@ -25,6 +38,10 @@
       return $list;
     }
 
+    /**
+     * @param $id
+     * @return Post
+    */
     public static function find($id) {
       $db = Db::getInstance();
       // we make sure $id is an integer

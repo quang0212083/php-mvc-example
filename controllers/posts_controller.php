@@ -1,11 +1,22 @@
 <?php
-  class PostsController {
+
+/**
+ * Class PostsController
+ */
+class PostsController {
+
+    /**
+     * Show all post
+     */
     public function index() {
       // we store all the posts in a variable
       $posts = Post::all();
       require_once('views/posts/index.php');
     }
 
+    /**
+     * Show by id post
+     */
     public function show() {
       // we expect a url of form ?controller=posts&action=show&id=x
       // without an id we just redirect to the error page as we need the post id to find it in the database
