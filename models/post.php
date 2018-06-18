@@ -53,5 +53,29 @@ class Post {
 
       return new Post($post['id'], $post['author'], $post['content']);
     }
+
+    public static function add($arr) {
+        $time = date('Y-m-d h:sa:i');
+        $db = Db::getInstance();
+        $req = "INSERT INTO `posts` (`id`, `first_name`, `last_name`, `author`, `content`, `created`, `modified`) VALUES (NULL, '".$_POST['firstname']."', '".$_POST['lastname']."', '".$_POST['author']."', '".$_POST['content']."', '".$time."', '".$time."')";
+        $query = $db -> query($req);
+        if($query) {
+          echo "Add success!";
+        }
+    }
+
+    public static function del($id) {
+      $db = Db::getInstance();
+      $id = intval($id);
+      $req = "DELETE FROM `posts` WHERE `id` = '".$id."'";
+      $query = $db->query($req);
+      //$req = $db->prepare('DELETE * FROM posts WHERE id = :id');
+      //$req->execute(array('id' => $id));
+      //$post = $req->fetch();
+      if($query) {
+        echo "Del success!";
+      }
+    }
   }
-?>
+  
+?>    
