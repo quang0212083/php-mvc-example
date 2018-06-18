@@ -13,7 +13,6 @@ class PostsController {
       $posts = Post::all();
       require_once('views/posts/index.php');
     }
-
     /**
      * Show by id post
      */
@@ -27,5 +26,72 @@ class PostsController {
       $post = Post::find($_GET['id']);
       require_once('views/posts/show.php');
     }
+    public function add()
+  {  
+    require_once('views/posts/add.php');
   }
+  public function doAdd()
+  {
+   $firstname= $_POST['firstname'];
+   $lastname = $_POST['lastname'];
+   $author = $_POST['author'];
+   $content = $_POST['content'];
+  
+   $post = array(
+    'first_name' => $firstname,
+    'last_name' => $lastname,
+    'author' => $author,
+    'content' => $content,
+    
+   );
+    
+    require_once('models/post.php');
+    $posts =Post::addPost($post);
+    $posts = Post::all();
+    require_once('views/posts/index.php');
+    // require_once('views/posts/index.php');
+    // $view = Post::view($status);
+   
+  }
+  public function update()
+  {
+     if (!isset($_GET['id']))
+        return call('pages', 'error');
+
+      // we use the given id to get the right post
+      $post = Post::find($_GET['id']);
+      require_once('views/posts/update.php');
+  }
+  public function postUpdate()
+  {
+    $firstname= $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $author = $_POST['author'];
+    $content = $_POST['content'];
+  
+   $post = array(
+    'first_name' => $firstname,
+    'last_name' => $lastname,
+    'author' => $author,
+    'content' => $content,
+    
+   );
+    $id = $_POST['id'];
+    require_once('models/post.php');
+    $posts =Post::update($post,$id);
+    $posts = Post::all();
+    require_once('views/posts/index.php');
+  }
+  public function delete()
+  {
+    if (!isset($_GET['id']))
+        return call('pages', 'error');
+
+      // we use the given id to get the right post
+      $post = Post::delete($_GET['id']);
+      $posts = Post::all();
+     require_once('views/posts/index.php');
+  }
+  
+}
 ?>
