@@ -53,5 +53,16 @@ class Post {
 
       return new Post($post['id'], $post['author'], $post['content']);
     }
+
+    public static function add($arr) {
+        $time = date('Y-m-d h:sa:i');
+        $db = Db::getInstance();
+        $req = "INSERT INTO `posts` (`id`, `first_name`, `last_name`, `author`, `content`, `created`, `modified`) VALUES (NULL, '".$_POST['firstname']."', '".$_POST['lastname']."', '".$_POST['author']."', '".$_POST['content']."', '".$time."', '".$time."')";
+        $query = $db -> query($req);
+        if($query) {
+          echo "Add success!";
+        }
+    }
   }
+  
 ?>
