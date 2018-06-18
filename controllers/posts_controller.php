@@ -27,5 +27,71 @@ class PostsController {
       $post = Post::find($_GET['id']);
       require_once('views/posts/show.php');
     }
+
+
+    public function add(){
+      require_once('views/posts/add.php');
+      
+
+    }
+    public function doAdd()
+    {
+      $firstname= $_POST['firstname'];
+      $lastname=$_POST['lastname'];
+      $author=$_POST['author'];
+      $content=$_POST['content'];
+
+      $arr = array(
+        'first_name' => $firstname,
+        'last_name'=>$lastname,
+        'author'=>$author,
+        'content'=>$content
+
+
+      );
+
+        require_once('models/post.php');
+        $post = Post::add($arr);
+    }
+    public function update(){
+      if (!isset($_GET['id']))
+        return call('pages', 'error');
+
+      // we use the given id to get the right post
+      $post = Post::find($_GET['id']);
+      require_once('views/posts/update.php');
+      }
+
+    public function exeUpdate()
+    {
+      $id = $_POST['id'];
+     $firstname= $_POST['firstname'];
+       $lastname=$_POST['lastname'];
+      $author=$_POST['author'];
+       $content=$_POST['content'];
+
+      $arr = array(
+        'first_name' => $firstname,
+        'last_name'=>$lastname,
+        'author'=>$author,
+        'content'=>$content
+
+
+       );
+
+    require_once('models/post.php');
+  $post = Post::update($id,$arr);
+     }
+
+    public function delete(){
+       if (!isset($_GET['id']))
+        return call('pages', 'error');
+
+      // we use the given id to get the right post
+       require_once('models/post.php');
+      $post = Post::delete($_GET['id']);
+    
+      
+    }
   }
 ?>
