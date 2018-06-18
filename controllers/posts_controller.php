@@ -49,5 +49,14 @@ class PostsController {
       $addPost = Post::add($arr);
     }
 
+    public function delete() 
+    {
+      if(!isset($_GET['id']))
+        return call('pages','error');
+      $del = Post::del($_GET['id']);
+        //require_once('')
+
+    }
+
   }
 ?>

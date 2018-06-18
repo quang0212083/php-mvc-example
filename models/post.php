@@ -63,6 +63,19 @@ class Post {
           echo "Add success!";
         }
     }
+
+    public static function del($id) {
+      $db = Db::getInstance();
+      $id = intval($id);
+      $req = "DELETE FROM `posts` WHERE `id` = '".$id."'";
+      $query = $db->query($req);
+      //$req = $db->prepare('DELETE * FROM posts WHERE id = :id');
+      //$req->execute(array('id' => $id));
+      //$post = $req->fetch();
+      if($query) {
+        echo "Del success!";
+      }
+    }
   }
   
-?>
+?>    
