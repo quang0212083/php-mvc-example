@@ -1,5 +1,3 @@
--------------------------------------------------------
-
 DROP TABLE IF EXISTS `posts`;
 
 CREATE TABLE `posts` (
@@ -24,7 +22,7 @@ VALUES
 	(4,'Quang desu','ok dsu','Fr-Vi','Fr-Vi','2018-04-25 04:03:13','2018-04-25 04:06:09');
 
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
-UNLOCK TABLES;
+/*UNLOCK TABLES;
 
 
 
