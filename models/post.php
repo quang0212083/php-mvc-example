@@ -51,7 +51,7 @@ class Post {
       $req->execute(array('id' => $id));
       $post = $req->fetch();
 
-      return new Post($post['id'], $post['author'], $post['content']);
+      return $post;
     }
 
     public static function add($arr) {
@@ -69,12 +69,22 @@ class Post {
       $id = intval($id);
       $req = "DELETE FROM `posts` WHERE `id` = '".$id."'";
       $query = $db->query($req);
-      //$req = $db->prepare('DELETE * FROM posts WHERE id = :id');
-      //$req->execute(array('id' => $id));
-      //$post = $req->fetch();
       if($query) {
         echo "Del success!";
       }
+    }
+
+    public static function edit($arr,$id) {
+        $time = date('Y-m-d h:sa:i');
+        $db = Db::getInstance();
+        $id = intval($id);
+        $req = "UPDATE `posts` SET `first_name` = '".$_POST['firstname']."', `last_name` = '".$_POST['lastname']."', `author` = '".$_POST['author']."', `content` = '".$_POST['content']."', `created` = '".$time."', `modified` = '".$time."' WHERE `posts`.`id` = ".$id."";
+        $query = $db -> query($req);
+        if($query) {
+          echo "edit success!";
+        }
+        else
+          echo "error";
     }
   }
   
