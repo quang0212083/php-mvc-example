@@ -4,5 +4,7 @@
   <p>
     <?php echo $post->author; ?>
     <a href='?controller=posts&action=show&id=<?php echo $post->id; ?>'>See content</a>
+    <a href='?controller=posts&action=delete&id=<?php echo $post->id; ?>'>Delete</a>
+    <a href='?controller=posts&action=edit&id=<?php echo $post->id; ?>'>Edit</a>
   </p>
 <?php } ?>

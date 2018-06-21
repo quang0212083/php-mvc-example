@@ -27,5 +27,61 @@ class PostsController {
       $post = Post::find($_GET['id']);
       require_once('views/posts/show.php');
     }
+    public function add()
+    {
+     
+      require_once('views/posts/add.php'); 
+    }
+    public function doadd()
+    {  
+      if(isset($_POST['add']))
+        {
+          $first_name = $_POST['firstname'];
+          $last_name = $_POST['lastname'];
+          $author = $_POST['author'];
+          $content = $_POST['content'];
+        }
+      $arr = array(
+        'first_name' =>$first_name,
+        'last_name' =>$last_name,
+        'author' => $author,
+        'content' => $content);   
+      $addPost = Post::add($arr);
+    }
+
+    public function delete() 
+    {
+      if(!isset($_GET['id']))
+        return call('pages','error');
+      $del = Post::del($_GET['id']);
+    }
+
+    public function edit()
+    {
+      if (!isset($_GET['id']))
+        return call('pages', 'error');
+      $posts = Post::find($_GET['id']);
+      require_once('views/posts/edit.php');
+    }
+
+    public function doedit()
+    {
+      if(isset($_POST['edit']))
+        {
+          $id = $_POST['id'];
+          $first_name = $_POST['firstname'];
+          $last_name = $_POST['lastname'];
+          $author = $_POST['author'];
+          $content = $_POST['content'];
+        }
+      $arr = array(
+        'first_name' =>$first_name,
+        'last_name' =>$last_name,
+        'author' => $author,
+        'content' => $content);   
+      $editPost = Post::edit($arr,$id);
+
+    }
+
   }
 ?>
