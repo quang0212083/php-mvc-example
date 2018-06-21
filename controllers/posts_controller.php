@@ -27,5 +27,54 @@ class PostsController {
       $post = Post::find($_GET['id']);
       require_once('views/posts/show.php');
     }
+
+      public function add()
+      {    
+          require_once('views/posts/add.php');
+      }
+      public function doAdd()
+      {
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $author = $_POST['author'];
+        $content = $_POST['content'];
+        $arr  = array(
+          'first_name' => $first_name,
+          'last_name' => $last_name,
+          'author' => $author,
+          'content' => $content
+        );
+        $post = Post::add($arr);
+      }
+
+        public function delete()
+       {
+        if (isset($_POST['id']))
+          $post = Post::delete($_POST['id']);
+        require_once('views/posts/delete.php');
+        }
+
+         public function update()
+      {    
+          require_once('views/posts/update.php');
+      }
+      public function doUpdate()
+      {
+        if (isset($_POST['id']))
+         $id = $_POST['id'];
+         $first_name = $_POST['first_name'];
+         $last_name = $_POST['last_name'];
+         $author = $_POST['author'];
+         $content = $_POST['content'];
+         $arr  = array(
+          'id' => $id,
+          'first_name' => $first_name,
+          'last_name' => $last_name,
+          'author' => $author,
+          'content' => $content
+        );
+        $post = Post::update($array);
+      }
   }
+
 ?>
